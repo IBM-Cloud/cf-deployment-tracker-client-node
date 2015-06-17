@@ -34,7 +34,7 @@ function track() {
         if (vcapApplication.application_uris) {
             event.application_uris = vcapApplication.application_uris;
         }
-        console.log(event);
+
         var url = "https://deployment-tracker.mybluemix.net/api/v1/track";
         restler.postJson(url, event).on("complete", function (data) {
             console.log("Uplodaed stats");
