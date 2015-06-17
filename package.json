@@ -1,0 +1,24 @@
+{
+  "name": "cf-deployment-tracker-client",
+  "version": "0.0.1",
+  "private": false,
+  "main": "tracker.js track",
+  "scripts": {
+    "start": "node tracker.js track"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM-Bluemix/cf-deployment-tracker-client-node.git"
+  },
+  "dependencies": {
+    "commander": "*",
+    "restler": "*"
+  },
+  "author": [
+    {
+      "name": "Jeff Sloyer",
+      "email": "jbsloyer@us.ibm.com"
+    }
+  ],
+  "license": "Apache License V2"
+}
