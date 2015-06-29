@@ -1,6 +1,6 @@
 {
   "name": "cf-deployment-tracker-client",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "private": false,
   "main": "tracker.js",
   "repository": {
