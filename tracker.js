@@ -2,22 +2,10 @@
 
 var express = require("express"),
     restler = require("restler"),
-    path = require("path"),
-    fs = require("fs");
-
-function getPackageJson() {
-    try {
-        fs.statSync(path.join(path.dirname(module.parent.filename), "package.json"));
-        return path.join(path.dirname(module.parent.filename), "package.json");
-    }
-    catch (error) {
-        return path.join(path.dirname(module.parent.filename), "../package.json");
-    }
-}
+    path = require("path");
 
 function track() {
-
-    var pkg = getPackageJson()
+    var pkg = require(path.join(path.dirname(module.parent.filename), "package.json")),
         vcapApplication;
 
     if (process.env.VCAP_APPLICATION) {
