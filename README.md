@@ -4,11 +4,11 @@ This is an npm module that can track and report details of a demo/tutorial that 
 
 # To Use
 
-1. Open a terminal and run
+1. Open a terminal and run  
    ```
    npm install cf-deployment-tracker-client --save
    ```
-2. Require the package in your main entry point to your app (probably app.js).
+2. Require the package in your main entry point to your app (probably app.js).  
     ```
     require("cf-deployment-tracker-client").track();
     ```
