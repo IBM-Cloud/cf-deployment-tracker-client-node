@@ -1,11 +1,17 @@
 # Overview
 
-This is an npm module that can track and report details of a demo/tutorial that has been deployed to Cloud Foundry
+This is an npm module that can track and report details of a demo/tutorial that has been deployed to Cloud Foundry.
 
 # To Use
 
-1. Add cf-deployment-tracker-client as a dependency to your `package.json`.
-2. Require the package in your main entry point to your app (probably app.js).  `require("cf-deployment-tracker-client").track();`
+1. Open a terminal and run
+   ```
+   npm install cf-deployment-tracker-client --save
+   ```
+2. Require the package in your main entry point to your app (probably app.js).
+    ```
+    require("cf-deployment-tracker-client").track();
+    ```
 
 # Example app
 
