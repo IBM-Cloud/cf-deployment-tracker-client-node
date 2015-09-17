@@ -1,11 +1,12 @@
 // Licensed under the Apache 2.0 License. See footer for details.
 
-var express = require("express"),
-    restler = require("restler"),
-    path = require("path");
+'use strict';
+
+var restler = require('restler'),
+    path = require('path');
 
 function track() {
-    var pkg = require(path.join(path.dirname(module.parent.filename), "package.json")),
+    var pkg = require(path.join(path.dirname(module.parent.filename), 'package.json')),
         vcapApplication;
 
     if (process.env.VCAP_APPLICATION) {
@@ -35,9 +36,9 @@ function track() {
             event.application_uris = vcapApplication.application_uris;
         }
 
-        var url = "https://deployment-tracker.mybluemix.net/api/v1/track";
-        restler.postJson(url, event).on("complete", function (data) {
-            console.log("Uplodaed stats");
+        var url = 'https://deployment-tracker.mybluemix.net/api/v1/track';
+        restler.postJson(url, event).on('complete', function (data) {
+            console.log('Uploaded stats', data);
         });
     }
 }

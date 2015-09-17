@@ -8,7 +8,7 @@
     "url": "https://github.com/IBM-Bluemix/cf-deployment-tracker-client-node.git"
   },
   "dependencies": {
-    "restler": "*"
+    "restler": "3.3.0"
   },
   "author": [
     {
