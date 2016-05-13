@@ -36,7 +36,7 @@ function track() {
             event.application_uris = vcapApplication.application_uris;
         }
 
-        var url = 'https://deployment-tracker.mybluemix.net/api/v1/track';
+        var url = 'https://deployment-tracker-gesticulatory-nonaccretion.mybluemix.net/api/v1/track';
         restler.postJson(url, event).on('complete', function (data) {
             console.log('Uploaded stats', data);
         });
