@@ -7,7 +7,8 @@ var restler = require('restler'),
 
 function track() {
     var pkg = require(path.join(path.dirname(module.parent.filename), 'package.json')),
-        vcapApplication;
+        vcapApplication,
+        vcapServices;
 
     if (process.env.VCAP_APPLICATION) {
         vcapApplication = JSON.parse(process.env.VCAP_APPLICATION);
@@ -36,9 +37,17 @@ function track() {
             event.application_uris = vcapApplication.application_uris;
         }
 
-        var url = 'https://deployment-tracker.mybluemix.net/api/v1/track';
+        if (process.env.VCAP_SERVICES) {
+            vcapServices =  JSON.parse(process.env.VCAP_SERVICES);
+            event.bound_vcap_services = [];
+            Object.keys(vcapServices).forEach(function(service_label) {
+                event.bound_vcap_services.push({[service_label]: vcapServices[service_label].length});
+            });
+        }       
+
+        var url = 'https://deployment-tracker-gesticulatory-nonaccretion.mybluemix.net/api/v1/track';
         restler.postJson(url, event).on('complete', function (data) {
-            console.log('Uploaded stats', data);
+            console.log('Uploaded stats to ' + url + ' ' + data);
         });
     }
 }
