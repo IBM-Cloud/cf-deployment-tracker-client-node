@@ -7,7 +7,8 @@ var restler = require('restler'),
 
 function track() {
     var pkg = require(path.join(path.dirname(module.parent.filename), 'package.json')),
-        vcapApplication;
+        vcapApplication,
+        vcapServices;
 
     if (process.env.VCAP_APPLICATION) {
         vcapApplication = JSON.parse(process.env.VCAP_APPLICATION);
@@ -34,6 +35,15 @@ function track() {
         }
         if (vcapApplication.application_uris) {
             event.application_uris = vcapApplication.application_uris;
+        }
+        if (process.env.VCAP_SERVICES) {
+            vcapServices =  JSON.parse(process.env.VCAP_SERVICES);
+            if(Object.keys(vcapServices).length > 0) {
+                event.bound_vcap_services = {};
+                Object.keys(vcapServices).forEach(function(service_label) {
+                    event.bound_vcap_services[service_label] = { 'count': vcapServices[service_label].length };
+                });                
+            }
         }
 
         var url = 'https://deployment-tracker.mybluemix.net/api/v1/track';
