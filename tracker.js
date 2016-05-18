@@ -45,6 +45,7 @@ function track() {
                 });                
             }
         }
+        event.runtime = 'nodejs';
 
         var url = 'https://deployment-tracker.mybluemix.net/api/v1/track';
         restler.postJson(url, event).on('complete', function (data) {
