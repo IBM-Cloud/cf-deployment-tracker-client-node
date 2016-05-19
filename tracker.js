@@ -43,21 +43,19 @@ function track() {
                 event.bound_vcap_services = {};
                 // for each bound service count the number of instances and identify used plans
                 Object.keys(vcapServices).forEach(function(service_label) {
-                    event.bound_vcap_services[service_label] = { 
-                                                                 'count': vcapServices[service_label].length,   // number of service_label instances 
+                    event.bound_vcap_services[service_label] = {
+                                                                 'count': vcapServices[service_label].length,   // number of service_label instances
                                                                  'plans': []                                    // (optional) plan information for service_label
                                                                };
                     vcapServices[service_label].forEach(function (serviceInstance) {
                         if(serviceInstance.hasOwnProperty('plan')) {
-                            if(event.bound_vcap_services[service_label].plans.indexOf(serviceInstance.plan) === -1) {
-                                event.bound_vcap_services[service_label].plans.push(serviceInstance.plan);
-                            }
+                            event.bound_vcap_services[service_label].plans.push(serviceInstance.plan);
                         }
-                    });                                          
+                    });
 
                     // Keep plans property only if at least one plan is associated with this service
                     if(event.bound_vcap_services[service_label].plans.length === 0) {
-                        delete event.bound_vcap_services[service_label].plans;  
+                        delete event.bound_vcap_services[service_label].plans;
                     }
                 });
             }
