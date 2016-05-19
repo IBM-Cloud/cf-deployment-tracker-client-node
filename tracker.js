@@ -37,12 +37,29 @@ function track() {
             event.application_uris = vcapApplication.application_uris;
         }
         if (process.env.VCAP_SERVICES) {
+            // refer to http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES
             vcapServices =  JSON.parse(process.env.VCAP_SERVICES);
             if(Object.keys(vcapServices).length > 0) {
                 event.bound_vcap_services = {};
+                // for each bound service count the number of instances and identify used plans
                 Object.keys(vcapServices).forEach(function(service_label) {
-                    event.bound_vcap_services[service_label] = { 'count': vcapServices[service_label].length };
-                });                
+                    event.bound_vcap_services[service_label] = { 
+                                                                 'count': vcapServices[service_label].length,   // number of service_label instances 
+                                                                 'plans': []                                    // (optional) plan information for service_label
+                                                               };
+                    vcapServices[service_label].forEach(function (serviceInstance) {
+                        if(serviceInstance.hasOwnProperty('plan')) {
+                            if(event.bound_vcap_services[service_label].plans.indexOf(serviceInstance.plan) === -1) {
+                                event.bound_vcap_services[service_label].plans.push(serviceInstance.plan);
+                            }
+                        }
+                    });                                          
+
+                    // Keep plans property only if at least one plan is associated with this service
+                    if(event.bound_vcap_services[service_label].plans.length === 0) {
+                        delete event.bound_vcap_services[service_label].plans;  
+                    }
+                });
             }
         }
         event.runtime = 'nodejs';
