@@ -12,6 +12,9 @@ This is an npm module that can track and report details of a demo/tutorial that 
     ```
     require("cf-deployment-tracker-client").track();
     ```
+3. Add a copy of the Privacy Notice to the readme file. 
+
+   **Note:** All apps that have deployment tracker must include the Privacy Notice.
 
 # Example app
 
