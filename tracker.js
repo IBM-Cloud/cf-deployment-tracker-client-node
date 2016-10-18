@@ -5,8 +5,10 @@
 var restler = require('restler'),
     path = require('path');
 
-function track() {
-    var pkg = require(path.join(path.dirname(module.parent.filename), 'package.json')),
+function track(config) {
+    config = config || {};
+    config.packagePath = config.packagePath || path.dirname(module.parent.filename);
+    var pkg = require(path.join(config.packagePath, 'package.json')),
         vcapApplication,
         vcapServices;
 
