@@ -1,6 +1,6 @@
 {
   "name": "cf-deployment-tracker-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "main": "tracker.js",
   "repository": {
@@ -8,6 +8,7 @@
     "url": "https://github.com/IBM-Bluemix/cf-deployment-tracker-client-node.git"
   },
   "dependencies": {
+    "cwd": "^0.10.0",
     "restler": "3.3.0"
   },
   "author": [

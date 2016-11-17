@@ -3,18 +3,25 @@
 'use strict';
 
 var restler = require('restler'),
-    path = require('path');
+    path = require('path'),
+    cwd = require('cwd');
 
 function track() {
-    var pkg = require(path.join(path.dirname(module.parent.filename), 'package.json')),
-        vcapApplication,
+    var pkg = null;
+    try {
+        pkg = require(path.join(cwd(), 'package.json'));
+    }
+    catch(ex) {
+        // package.json could not be loaded from the cwd
+    }
+    var vcapApplication,
         vcapServices;
 
     if (process.env.VCAP_APPLICATION) {
         vcapApplication = JSON.parse(process.env.VCAP_APPLICATION);
     }
 
-    if (vcapApplication) {
+    if ((vcapApplication) && (pkg)) {
         var event = {
             date_sent: new Date().toJSON()
         };
