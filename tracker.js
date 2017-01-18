@@ -34,6 +34,9 @@ function track() {
         if (vcapApplication.application_name) {
             event.application_name = vcapApplication.application_name;
         }
+        if (vcapApplication.application_id) {
+            event.application_id = vcapApplication.application_id;
+        }        
         if (vcapApplication.space_id) {
             event.space_id = vcapApplication.space_id;
         }
