@@ -27,6 +27,7 @@ Sample web applications that include this package may be configured to track dep
 * Node.js package version
 * Node.js repository URL
 * Application Name (`application_name`)
+* Application GUID (`application_id`)
 * Space ID (`space_id`)
 * Application Version (`application_version`)
 * Application URIs (`application_uris`)
