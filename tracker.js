@@ -37,7 +37,7 @@ function track() {
         if (vcapApplication.application_id) {
             event.application_id = vcapApplication.application_id;
         } 
-        if (vcapApplication.instance_index) {
+        if (vcapApplication.hasOwnProperty('instance_index')) {
             event.instance_index = vcapApplication.instance_index;
         }               
         if (vcapApplication.space_id) {
