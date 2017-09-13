@@ -83,11 +83,10 @@ function track() {
     var url = 'https://trackermetric.mybluemix.net/api/v1/track';
     if(journey_metric!=null){
         event = metric.massage(journey_metric,event);
-        console.log(event);
-        restler.postJson(url, event).on('complete', function (data) {
-            console.log('Uploaded stats', data);
-        });
     }
+    restler.postJson(url, event).on('complete', function (data) {
+        console.log('Uploaded stats', data);
+    });
 }
 
 module.exports.track = track;

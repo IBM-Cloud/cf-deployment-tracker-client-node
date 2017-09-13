@@ -13,14 +13,15 @@ module.exports = {
 
 };
 
+//Reformat the data into one Json
 function combineData(data,cfData){
 	try{
 	cfData.config = {};
-	cfData.config.repository_id = data.id;
-	cfData.config.target_runtimes = data.runtimes;
-	cfData.config.target_services = data.services;
-	cfData.config.event_id = data.event_id;
-	cfData.config.deploy_to_bluemix = data.deploy_to_bluemix;
+	if(data.id) cfData.config.repository_id = data.id; else cfData.config.repository_id = "";
+	if(data.runtimes) cfData.config.target_runtimes = data.runtimes; else cfData.config.target_runtimes = "";
+	if(data.services) cfData.config.target_services = data.services; else cfData.config.target_services = "";
+	if(data.event_id) cfData.config.event_id = data.event_id; else cfData.config.event_id = "";
+	if(data.deploy_to_bluemix) cfData.config.deploy_to_bluemix = data.deploy_to_bluemix; else cfData.config.deploy_to_bluemix = "";
 	return cfData;
 	}catch(ex){
 		return cfData;
