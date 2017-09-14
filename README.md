@@ -39,6 +39,35 @@ Required field:
 4. services: Put down all the bluemix services that are used in your journey in a list.
 5. event_id: Put down where you will distribute your journey. Default is **web**. 
 
+# List of runtimes and services
+
+Runtimes
+
+- Kubernetes Cluster
+- Cloud Foundry
+- OpenWhisk
+- Mainframe
+
+Services
+
+- Object Storage
+- Apache Spark
+- Cloudant NoSQL DB
+- Tone Analyzer
+- Natural Language Understanding
+- Visual Recognition
+- Conversation
+- Discovery
+- Text-to-Speech
+- Speech-to-Text
+- API Connect
+- Secure Gateway
+- Watson Analytics
+- Insights for Weather
+- Internet of Things Platform
+- Compose for MySQL
+- Compose for PostgreSQL
+
 # Example app
 
 To see how to include this into your app please visit [Bluemix Hello World](https://github.com/IBM-Bluemix/bluemix-hello-node).  You will want to pay attention to [package.json](https://github.com/IBM-Bluemix/bluemix-hello-node/blob/master/package.json#L9), and [server.js](https://github.com/IBM-Bluemix/bluemix-hello-node/blob/master/server.js#L15).
