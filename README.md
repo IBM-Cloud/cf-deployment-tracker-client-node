@@ -6,15 +6,67 @@ This is an npm module that can track and report details of a demo/tutorial that 
 
 1. Open a terminal and run  
    ```
-   npm install cf-deployment-tracker-client --save
+   npm install metrics-collector-client --save
    ```
 2. Require the package in your main entry point to your app (probably app.js).  
     ```
-    require("cf-deployment-tracker-client").track();
+    require("metrics-collector-client").track();
     ```
 3. Add a copy of the Privacy Notice to the readme file. 
 
    **Note:** All apps that have deployment tracker must include the Privacy Notice.
+
+4. Add a repository.config file in the same directory of your main entry point files.
+
+
+# Example **repository.config** file
+The repository.config need to be written in Yaml format. Also, please put all your keys in lower case.
+
+```
+deploy_to_bluemix: True
+id: watson-discovery-news
+runtimes: 
+  - Cloud Foundry
+services: 
+  - Discovery
+event_id: web
+```
+
+Required field:
+1. deploy_to_bluemix : Put **True** if your journey has a deploy to bluemix button. Else put **False**.
+2. id: Put your journey name/Github URL of your journey.
+3. runtimes: Put down all your platform runtime environments in a list.
+4. services: Put down all the bluemix services that are used in your journey in a list.
+5. event_id: Put down where you will distribute your journey. Default is **web**. 
+
+# List of runtimes and services
+
+Runtimes
+
+- Kubernetes Cluster
+- Cloud Foundry
+- OpenWhisk
+- Mainframe
+
+Services
+
+- Object Storage
+- Apache Spark
+- Cloudant NoSQL DB
+- Tone Analyzer
+- Natural Language Understanding
+- Visual Recognition
+- Conversation
+- Discovery
+- Text-to-Speech
+- Speech-to-Text
+- API Connect
+- Secure Gateway
+- Watson Analytics
+- Insights for Weather
+- Internet of Things Platform
+- Compose for MySQL
+- Compose for PostgreSQL
 
 # Example app
 
@@ -22,7 +74,7 @@ To see how to include this into your app please visit [Bluemix Hello World](http
 
 # Privacy Notice
 
-Sample web applications that include this package may be configured to track deployments to [IBM Bluemix](https://www.bluemix.net/) and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM-Bluemix/cf-deployment-tracker-service) service on each deployment:
+Sample web applications that include this package may be configured to track deployments to [IBM Bluemix](https://www.bluemix.net/) and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM/metrics-collector-service) service on each deployment:
 
 * Node.js package version
 * Node.js repository URL
@@ -34,8 +86,9 @@ Sample web applications that include this package may be configured to track dep
 * Application URIs (`application_uris`)
 * Labels of bound services
 * Number of instances for each bound service and associated plan information
+* Metadata in the repository.yaml file
 
-This data is collected from the `package.json` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
+This data is collected from the `package.json` and `repository.yaml` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
 
 ## Disabling Deployment Tracking
 

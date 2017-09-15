@@ -4,7 +4,8 @@
 
 var restler = require('restler'),
     path = require('path'),
-    cwd = require('cwd');
+    cwd = require('cwd'),
+    metric = require('./metric_tracker');
 
 function track() {
     var pkg = null;
@@ -17,14 +18,19 @@ function track() {
     var vcapApplication,
         vcapServices;
 
+    var journey_metric = metric.getJson();
+
     if (process.env.VCAP_APPLICATION) {
         vcapApplication = JSON.parse(process.env.VCAP_APPLICATION);
     }
 
+    var event = {
+        date_sent: new Date().toJSON()
+    };
+
+    event.runtime = 'nodejs';
+
     if ((vcapApplication) && (pkg)) {
-        var event = {
-            date_sent: new Date().toJSON()
-        };
         if (pkg.version) {
             event.code_version = pkg.version;
         }
@@ -73,13 +79,17 @@ function track() {
                 });
             }
         }
-        event.runtime = 'nodejs';
-
-        var url = 'https://deployment-tracker.mybluemix.net/api/v1/track';
-        restler.postJson(url, event).on('complete', function (data) {
-            console.log('Uploaded stats', data);
-        });
+        // original tracker
+        // restler.postJson('https://deployment-tracker.mybluemix.net/api/v1/track', event).on('complete', function (data) {
+        // });
     }
+    var url = 'https://trackermetric.mybluemix.net/api/v1/track';
+    if(journey_metric!=null){
+        event = metric.massage(journey_metric,event);
+    }
+    restler.postJson(url, event).on('complete', function (data) {
+        console.log('Uploaded stats', data);
+    });
 }
 
 module.exports.track = track;
