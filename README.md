@@ -1,3 +1,3 @@
-## The Cloud Foundry deployment tracker service is no longer available
+## The Cloud Foundry Deployment Tracker Service has been discontinued
 
-Refer to [this page](https://github.com/IBM-Bluemix/cf-deployment-tracker-service/wiki/Deployment-Tracker-Service-status) for details.
+This Deployment Tracker Service client for Node.js applications is no longer supported. Refer to [this page](https://github.com/IBM-Bluemix/cf-deployment-tracker-service/wiki/Deployment-Tracker-Service-status) for details.
